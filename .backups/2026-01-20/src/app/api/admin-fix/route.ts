@@ -8,8 +8,8 @@ export async function GET() {
     try {
         await connectDB();
 
-        const email = "dalbanjanrushil0@gmail.com";
-        const password = "Rushil08@";
+        const email = "janvirao00021@gmail.com";
+        const password = "janvi4321";
 
         // Check if exists
         let admin = await User.findOne({ email });
