@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: var(--color-bg-primary);
+  --color-bg-secondary: var(--color-bg-secondary);
+  --color-bg-surface: var(--color-bg-surface);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+
+  --color-accent-primary: var(--color-accent-primary);
+  --color-accent-secondary: var(--color-accent-secondary);
+  --color-danger: var(--color-danger);
+  --color-warning: var(--color-warning);
+
+  --color-border: var(--color-border);
+
+  /* Mapping standard Tailwind classes to our semantic tokens for backward compatibility where possible, 
+     or creating new utility classes */
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+  --color-card: var(--color-bg-surface);
+  --color-card-foreground: var(--color-text-primary);
+  --color-popover: var(--color-bg-surface);
+  --color-popover-foreground: var(--color-text-primary);
+  --color-primary: var(--color-accent-secondary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--color-bg-secondary);
+  --color-secondary-foreground: var(--color-text-primary);
+  --color-muted: var(--color-bg-secondary);
+  --color-muted-foreground: var(--color-text-muted);
+  --color-accent: var(--color-bg-secondary);
+  --color-accent-foreground: var(--color-accent-secondary);
+  --color-destructive: var(--color-danger);
+  --color-destructive-foreground: #ffffff;
+  --color-input: var(--color-bg-surface);
+  --color-ring: var(--color-accent-secondary);
+
+  --radius-radius: 0.5rem;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular;
+
+  --animate-bounce-slow: bounce-slow 8s infinite;
+
+  @keyframes bounce-slow {
+
+    0%,
+    100% {
+      transform: translateY(-8%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+      transform: translateY(8%);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    /* LIGHT MODE (Default) - Clean, Modern SaaS Identity */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f4f4f5;
+    /* Zinc 100 */
+    --color-bg-surface: #ffffff;
+
+    /* Typography */
+    --color-text-primary: #09090b;
+    /* Zinc 950 */
+    --color-text-secondary: #52525b;
+    /* Zinc 600 */
+    --color-text-muted: #a1a1aa;
+    /* Zinc 400 */
+    --color-text-disabled: #d4d4d8;
+    /* Zinc 300 */
+
+    /* Universal Accents */
+    --color-accent-primary: #10b981;
+    /* Emerald 500 */
+    --color-accent-secondary: #06b6d4;
+    /* Cyan 500 */
+    --color-danger: #ef4444;
+    /* Red 500 */
+    --color-warning: #f59e0b;
+    /* Amber 500 */
+
+    /* Borders */
+    --color-border: #e4e4e7;
+    /* Zinc 200 */
+    --color-border-subtle: rgba(0, 0, 0, 0.08);
+
+    /* Globals */
+    --radius: 0.75rem;
+  }
+
+  /* DARK MODE (.dark class applied by next-themes) */
+  .dark {
+    --color-bg-primary: #09090b;
+    /* Zinc 950 */
+    --color-bg-secondary: #000000;
+    /* Pure Black */
+    --color-bg-surface: #18181b;
+    /* Zinc 900 */
+
+    /* Typography */
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e4e4e7;
+    /* Zinc 200 */
+    --color-text-muted: #a1a1aa;
+    /* Zinc 400 */
+    --color-text-disabled: #71717a;
+    /* Zinc 500 */
+
+    /* Borders */
+    --color-border: #27272a;
+    /* Zinc 800 */
+    --color-border-subtle: rgba(255, 255, 255, 0.08);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+    /* Enforce base styles */
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  /* Accessibility & Typography Standards */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground font-bold tracking-tight;
+    color: var(--color-text-primary);
+  }
+
+  p {
+    color: var(--color-text-secondary);
+  }
+
+  a {
+    @apply transition-colors;
+    color: var(--color-accent-secondary);
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  /* Form Elements - Global Reset for Consistency */
+  input,
+  textarea,
+  select {
+    background-color: var(--color-bg-surface);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  /* Utilities for the new tokens */
+  .bg-primary-custom {
+    background-color: var(--color-bg-primary);
+  }
+
+  .bg-secondary-custom {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .bg-surface {
+    background-color: var(--color-bg-surface);
+  }
+
+  .text-primary-custom {
+    color: var(--color-text-primary);
+  }
+
+  .text-secondary-custom {
+    color: var(--color-text-secondary);
+  }
+
+  .text-muted-custom {
+    color: var(--color-text-muted);
+  }
+
+  .border-custom {
+    border-color: var(--color-border);
+  }
+}
+
+/* Glassmorphism Classes maintained but updated with tokens */
+.glass-panel {
+  @apply backdrop-blur-xl border border-border;
+  background-color: color-mix(in srgb, var(--color-bg-surface) 70%, transparent);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 10px;
+  opacity: 0.2;
+}
